@@ -5,6 +5,7 @@ require_relative '../lib/string_calculator'
 RSpec.describe StringCalculator do
   describe '.calculate' do
     it 'returns 0 for empty numbers' do
+      expect(StringCalculator.calculate('')).to eq(0)
     end
 
     it 'returns error for non-nombers' do
