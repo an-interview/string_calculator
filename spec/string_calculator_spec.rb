@@ -15,5 +15,9 @@ RSpec.describe StringCalculator do
     it 'returns 6 for 1,5' do
       expect(StringCalculator.calculate('1,5')).to eq(6)
     end
+
+    it 'return 1 for 1' do
+      expect(StringCalculator.calculate('1')).to eq(1)
+    end
   end
 end

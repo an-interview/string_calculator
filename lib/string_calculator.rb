@@ -10,11 +10,8 @@ class StringCalculator
       end
 
       numbers = input.split(',').map(&:strip)
-      total = 0
-      numbers.each do |number|
-        total += number.to_i
-      end
-      total
+
+      numbers.sum(&:to_i)
     else
       raise ArgumentError, 'Input must be a string'
     end
