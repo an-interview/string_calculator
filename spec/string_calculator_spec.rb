@@ -20,8 +20,12 @@ RSpec.describe StringCalculator do
       expect(StringCalculator.calculate('1')).to eq(1)
     end
 
-    it 'return 5 for 1\n2,3' do
+    it 'return 6 for 1\n2,3' do
       expect(StringCalculator.calculate('1\n2,3')).to eq(6)
+    end
+
+    it 'return 10 for 1,2\n3\n4' do
+      expect(StringCalculator.calculate('1,2\n3\n4')).to eq(10)
     end
   end
 end
