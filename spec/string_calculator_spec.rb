@@ -9,6 +9,7 @@ RSpec.describe StringCalculator do
     end
 
     it 'returns error for non-nombers' do
+      expect { StringCalculator.calculate('0,a,5') }.to raise_error(ArgumentError)
     end
 
     it 'returns 6 for 1,5' do
