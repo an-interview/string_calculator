@@ -28,17 +28,15 @@ class StringCalculator
   end
 
   def self.convert_to_commas(input)
-    # handle malformed dynamic input
+    # handle dynamic seperator
     if input.start_with?('//') && input.length > 2
       dynamic_separator = input[2]
       input = input.slice(3..-1)
       input = input.gsub(dynamic_separator, ',')
-      input = input.gsub('\\n', "\n")
-      input.gsub(/\n/, ',') # handle new lines
-    else
-      input = input.gsub('\\n', "\n")
-      input.gsub(/\n/, ',') # handle new lines
-      input.gsub(';', ',')
     end
+
+    input = input.gsub('\\n', "\n")
+    input.gsub(/\n/, ',') # handle new lines
+    input.gsub(';', ',')
   end
 end
