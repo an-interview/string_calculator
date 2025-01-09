@@ -1,32 +1,31 @@
 class StringCalculator
   def self.calculate(input_string)
-    if input_string.is_a?(String)
-      if input_string.strip.empty?
-        return 0
-      end
+    return 0 if input_string.strip.empty?
 
-      input_numbers = array_of_numbers(input_string)
-      valid_comma_separated_numbers?(input_numbers)
+    input_string = convert_to_commas(input_string)
+    valid_input?(input_string)
+    input_numbers = array_of_numbers(input_string)
+    negative_numbers?(input_numbers)
 
-      input_numbers.sum
-    else
-      raise ArgumentError, 'Input must be a string'
-    end
+    input_numbers.sum
+  end
+
+  def self.valid_input?(input_string)
+    raise ArgumentError, 'Input must be a string' unless input_string.is_a?(String)
+    raise ArgumentError, 'Input must be a comma-separated string of numbers' unless input_string.split(',').all? { |value| string_valid_number?(value) }
   end
 
   def self.array_of_numbers(input_string)
-    input = convert_to_commas(input_string)
-
-    raise ArgumentError, 'Input must be a comma-separated string of positive numbers' unless input.split(',').all? { |value| string_valid_number?(value) }
-
-    input.split(',').map(&:to_i)
+    input_string.split(',').map(&:to_i)
   end
 
-  def self.valid_comma_separated_numbers?(input_numbers)
+  def self.negative_numbers?(input_numbers)
     negative_numbers = []
     negative_numbers = input_numbers.select { |num| num < 0 }
 
     raise ArgumentError, "negative numbers not allowed #{negative_numbers.join(',')}" if negative_numbers.length > 0
+
+    false
   end
 
   def self.string_valid_number?(value)
