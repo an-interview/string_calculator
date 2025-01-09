@@ -45,3 +45,17 @@ class StringCalculator
     input_string.gsub(/\n/, ',') # handle new lines
   end
 end
+
+# Get the input string from ARGV
+input_string = ARGV[0]
+
+if ARGV.empty?
+  puts "Please provide a string as an argument."
+  exit
+end
+
+begin
+  puts StringCalculator.calculate(input_string)
+rescue ArgumentError => e
+  puts "Error: #{e.message}"
+end
