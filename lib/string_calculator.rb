@@ -6,7 +6,7 @@ class StringCalculator
       end
 
       unless valid_comma_separated_numbers?(input)
-        raise ArgumentError, 'Input must be a comma-separated string of numbers'
+        raise ArgumentError, 'Input must be a comma-separated string of positive numbers'
       end
 
       input = convert_to_commas(input)
