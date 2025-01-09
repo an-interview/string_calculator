@@ -6,5 +6,5 @@ This is for interview assignment.
 - `cd` to this directory
 - make sure you have ruby installed
 - `bundle install`
-- `rspec`
+- To run tests, comment out the 50-61 and then run `rspec`
 - Optionally to run the script directly with your custom input do `ruby lib/string_calculator.rb '1'`
