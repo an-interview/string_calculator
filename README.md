@@ -7,3 +7,4 @@ This is for interview assignment.
 - make sure you have ruby installed
 - `bundle install`
 - `rspec`
+- Optionally to run the script directly with your custom input do `ruby lib/string_calculator.rb '1'`
