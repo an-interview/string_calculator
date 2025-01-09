@@ -9,7 +9,7 @@ RSpec.describe StringCalculator do
     end
 
     it 'returns error for non-nombers' do
-      expect { StringCalculator.calculate('0,a,5') }.to raise_error(ArgumentError)
+      expect { StringCalculator.calculate('0,a,5') }.to raise_error(ArgumentError, /\AInput must be a comma-separated string of positive numbers$/)
     end
 
     it 'returns 6 for 1,5' do
@@ -45,8 +45,8 @@ RSpec.describe StringCalculator do
       expect { StringCalculator.calculate('//1;2') }.to raise_error(ArgumentError)
     end
 
-    it 'return error for 1,-2' do
-      expect { StringCalculator.calculate('1,-2') }.to raise_error(ArgumentError)
+    it 'return error for 1,-2,-3' do
+      expect { StringCalculator.calculate('1,-2,-3') }.to raise_error(ArgumentError, /\Anegative numbers not allowed -2,-3$/)
     end
   end
 end
