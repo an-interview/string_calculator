@@ -27,5 +27,10 @@ RSpec.describe StringCalculator do
     it 'return 10 for 1,2\n3\n4' do
       expect(StringCalculator.calculate('1,2\n3\n4')).to eq(10)
     end
+
+    # dynamic separator
+    it 'return 15 for //;1,2\n3;4;5' do
+      expect(StringCalculator.calculate('//;1,2\n3;4;5')).to eq(15)
+    end
   end
 end

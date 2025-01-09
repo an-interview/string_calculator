@@ -9,7 +9,7 @@ class StringCalculator
         raise ArgumentError, 'Input must be a comma-separated string of numbers'
       end
 
-      input = replace_new_lines_with_commas(input)
+      input = convert_to_commas(input)
       numbers = input.split(/[,\n]/).map(&:strip).map(&:to_i)
 
       numbers.sum(&:to_i)
@@ -19,7 +19,7 @@ class StringCalculator
   end
 
   def self.valid_comma_separated_numbers?(input)
-    input = replace_new_lines_with_commas(input)
+    input = convert_to_commas(input)
     input.split(',').all? { |value| valid_number?(value.strip) }
   end
 
@@ -27,8 +27,18 @@ class StringCalculator
     value.match?(/^\d+$/)
   end
 
-  def self.replace_new_lines_with_commas(input)
-    input = input.gsub('\\n', "\n")
-    input.gsub(/\n/, ',') # handle new lines
+  def self.convert_to_commas(input)
+    # handle malformed dynamic input
+    if input.start_with?('//') && input.length > 2
+      dynamic_separator = input[2]
+      input = input.slice(3..-1)
+      input = input.gsub(dynamic_separator, ',')
+      input = input.gsub('\\n', "\n")
+      input.gsub(/\n/, ',') # handle new lines
+    else
+      input = input.gsub('\\n', "\n")
+      input.gsub(/\n/, ',') # handle new lines
+      input.gsub(';', ',')
+    end
   end
 end
