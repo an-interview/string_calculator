@@ -36,5 +36,9 @@ RSpec.describe StringCalculator do
     it 'return 1 for //;1' do
       expect(StringCalculator.calculate('//;1')).to eq(1)
     end
+
+    it 'return error for /1' do
+      expect { StringCalculator.calculate('/1') }.to raise_error(ArgumentError)
+    end
   end
 end
